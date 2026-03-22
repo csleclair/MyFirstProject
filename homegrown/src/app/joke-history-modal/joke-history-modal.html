@@ -1,0 +1,51 @@
+<div mat-dialog-container role="document" class="history-dialog">
+  <div class="dialog-header">
+    <h2>Joke History</h2>
+  </div>
+  
+  <mat-dialog-content class="history-content">
+    <div *ngIf="history$().length === 0; else hasHistory" class="empty-state">
+      <mat-icon>history</mat-icon>
+      <p>No jokes yet. Generate some insights to build your history!</p>
+    </div>
+
+    <ng-template #hasHistory>
+      <table class="history-table">
+        <thead>
+          <tr>
+            <th class="col-time">When</th>
+            <th class="col-setup">Question</th>
+            <th class="col-response">Response</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let joke of history$()">
+            <td class="col-time">{{ formatDate(joke.timestamp) }}</td>
+            <td class="col-setup">{{ joke.setup }}</td>
+            <td class="col-response">{{ joke.punchline }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </ng-template>
+  </mat-dialog-content>
+
+  <mat-dialog-actions align="end">
+    <button 
+      mat-button 
+      (click)="clearHistory()"
+      aria-label="Clear all joke history"
+      class="action-button danger">
+      <mat-icon>delete_outline</mat-icon>
+      Clear History
+    </button>
+    <button 
+      mat-raised-button 
+      color="primary" 
+      (click)="closeDialog()"
+      aria-label="Close dialog"
+      class="action-button">
+      <mat-icon>close</mat-icon>
+      Close
+    </button>
+  </mat-dialog-actions>
+</div>
