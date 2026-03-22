@@ -1,0 +1,39 @@
+<div mat-dialog-container role="document" class="joke-dialog">
+  <div class="dialog-header">
+    <h2>Performance Insight Generated</h2>
+  </div>
+  
+  <mat-dialog-content *ngIf="loading$ | async" aria-live="polite" class="loading-state">
+    <div class="spinner-container">
+      <mat-icon class="spinner">hourglass_top</mat-icon>
+      <p>Generating insights...</p>
+    </div>
+  </mat-dialog-content>
+
+  <mat-dialog-content *ngIf="!(loading$ | async) && (joke$ | async) as joke" aria-live="polite">
+    <div class="joke-container">
+      <p class="joke-setup">{{ joke.setup }}</p>
+      <p class="joke-punchline">{{ joke.punchline }}</p>
+    </div>
+  </mat-dialog-content>
+
+  <mat-dialog-actions align="end">
+    <button 
+      mat-button 
+      (click)="refreshJoke()"
+      aria-label="Get another joke"
+      class="action-button">
+      <mat-icon>refresh</mat-icon>
+      Another Insight
+    </button>
+    <button 
+      mat-raised-button 
+      color="primary" 
+      (click)="closeDialog()"
+      aria-label="Close dialog"
+      class="action-button">
+      <mat-icon>close</mat-icon>
+      Close
+    </button>
+  </mat-dialog-actions>
+</div>

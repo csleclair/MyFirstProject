@@ -1,0 +1,147 @@
+<div class="analytics-container">
+  <header role="banner" class="analytics-header">
+    <div class="header-content">
+      <h1>Hyper Analytics Engine</h1>
+      <p class="subtitle">Advanced Performance Intelligence System</p>
+    </div>
+    <div class="header-controls">
+      <button 
+        mat-icon-button 
+        aria-label="View insight history" 
+        (click)="openHistoryModal()"
+        class="control-btn">
+        <mat-icon>settings</mat-icon>
+      </button>
+      <button mat-icon-button aria-label="Notifications" class="control-btn">
+        <mat-icon>notifications</mat-icon>
+      </button>
+    </div>
+    @if (quote(); as currentQuote) {
+      <div class="quote-section">
+        <div class="quote-container">
+          <p class="quote-text">{{ currentQuote.text }}</p>
+        </div>
+      </div>
+    } @else {
+      <div class="quote-section">
+        <div class="quote-container">
+          <p class="quote-text quote-placeholder">nothing to see here!</p>
+        </div>
+      </div>
+    }
+  </header>
+
+  <main class="analytics-main">
+    <!-- Hero Section for Joke Button -->
+    <section class="hero-section">
+      <div class="hero-card">
+        <div class="hero-content">
+          <mat-icon class="hero-icon">lightbulb</mat-icon>
+          <h2>AI Insight Generator</h2>
+          <p class="hero-description">Unlock hidden patterns in your data with our advanced neural analytics</p>
+          <button 
+            mat-raised-button 
+            color="primary" 
+            (click)="openJokeModal()"
+            aria-label="Generate AI insights and receive performance recommendations"
+            class="hero-button">
+            <mat-icon>auto_awesome</mat-icon>
+            Generate AI Insights
+          </button>
+          <p class="hero-hint">💡 Click above to discover actionable insights</p>
+        </div>
+        <div class="hero-decoration"></div>
+      </div>
+    </section>
+
+    <section class="metrics-grid">
+      <div *ngFor="let metric of metrics" class="metric-card">
+        <div class="metric-header">
+          <mat-icon class="metric-icon">{{ metric.icon }}</mat-icon>
+          <span class="metric-label">{{ metric.label }}</span>
+        </div>
+        <div class="metric-value">{{ metric.value }}</div>
+        <span class="metric-change" [class.positive]="metric.change.includes('+')">
+          {{ metric.change }}
+        </span>
+      </div>
+    </section>
+
+    <section class="charts-row">
+      <div class="chart-card">
+        <div class="card-header">
+          <h3>Request Volume Trend</h3>
+          <mat-icon class="chart-icon">trending_up</mat-icon>
+        </div>
+        <div class="fake-chart">
+          <div *ngFor="let data of chartData" class="chart-bar" [style.height.%]="data.value">
+            <span class="chart-label">{{ data.month }}</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="chart-card">
+        <div class="card-header">
+          <h3>System Performance</h3>
+          <mat-icon class="chart-icon">speed</mat-icon>
+        </div>
+        <div class="performance-box">
+          <div class="perf-metric">
+            <div class="perf-header">
+              <span class="perf-label">CPU Usage</span>
+              <span class="perf-value">68%</span>
+            </div>
+            <div class="progress-bar">
+              <div class="progress-fill" style="width: 68%"></div>
+            </div>
+          </div>
+          <div class="perf-metric">
+            <div class="perf-header">
+              <span class="perf-label">Memory Usage</span>
+              <span class="perf-value">45%</span>
+            </div>
+            <div class="progress-bar">
+              <div class="progress-fill" style="width: 45%"></div>
+            </div>
+          </div>
+          <div class="perf-metric">
+            <div class="perf-header">
+              <span class="perf-label">Disk Usage</span>
+              <span class="perf-value">82%</span>
+            </div>
+            <div class="progress-bar">
+              <div class="progress-fill" style="width: 82%"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="activity-section">
+      <div class="activity-card">
+        <h2>Recent Activity Feed</h2>
+        <div class="activity-list">
+          <div class="activity-item">
+            <mat-icon class="activity-icon success">check_circle</mat-icon>
+            <span>System health check completed successfully</span>
+            <time>2 mins ago</time>
+          </div>
+          <div class="activity-item">
+            <mat-icon class="activity-icon alert">info</mat-icon>
+            <span>Database optimization routine executed</span>
+            <time>15 mins ago</time>
+          </div>
+          <div class="activity-item">
+            <mat-icon class="activity-icon success">check_circle</mat-icon>
+            <span>Backup verification completed</span>
+            <time>1 hour ago</time>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer role="contentinfo" class="analytics-footer">
+    <p>&copy; 2026 Advanced Analytics. Real-time insights powered by cutting-edge technology.</p>
+  </footer>
+</div>
